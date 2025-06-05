@@ -170,7 +170,7 @@ class ValueAtRisk(BaseSimulation):
             'parameters': {
                 'portfolio_value': self.portfolio_value,
                 'expected_return': self.expected_return,
-                'volatility': self.portfolio_volatility,
+                'volatility': self.volatility,
                 'distribution': self.distribution
             }
         }
