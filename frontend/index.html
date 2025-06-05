@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Carlo Statistical Simulation Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="sidebar-title">Monte Carlo Dashboard</h1>
+            
+            <div class="control-section">
+                <h2>Simulation Type</h2>
+                <select id="simulationType" class="control-select">
+                    <option value="pi">π Estimation</option>
+                    <option value="integration">Monte Carlo Integration</option>
+                    <option value="option-pricing">Option Pricing</option>
+                    <option value="hypothesis">Hypothesis Testing</option>
+                    <option value="risk">Value at Risk</option>
+                    <option value="markov">Markov Chain</option>
+                </select>
+            </div>
+            
+            <div class="control-section">
+                <h2>General Settings</h2>
+                <div class="control-group">
+                    <label for="randomSeed">Random Seed (optional)</label>
+                    <input type="number" id="randomSeed" placeholder="Leave empty for random">
+                </div>
+            </div>
+            
+            <!-- Dynamic simulation-specific controls -->
+            <div id="specificControls" class="control-section">
+                <h2>Simulation Parameters</h2>
+                <!-- Controls will be inserted here -->
+            </div>
+            
+            <div class="button-group">
+                <button id="runSimulation" class="btn btn-primary">
+                    <span class="btn-icon">▶</span> Run Simulation
+                </button>
+                <button id="stopSimulation" class="btn btn-secondary" disabled>
+                    <span class="btn-icon">■</span> Stop
+                </button>
+                <button id="exportResults" class="btn btn-secondary" disabled>
+                    <span class="btn-icon">⬇</span> Export Results
+                </button>
+            </div>
+            
+            <div class="info-section">
+                <h3>Formula</h3>
+                <div id="formulaDisplay" class="formula-display"></div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-card">
+                    <div class="stat-value" id="currentEstimate">-</div>
+                    <div class="stat-label">Current Estimate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="standardError">-</div>
+                    <div class="stat-label">Standard Error</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="confidence95">-</div>
+                    <div class="stat-label">95% CI</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="simulationsRun">0</div>
+                    <div class="stat-label">Simulations</div>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+            
+            <!-- Visualization Area -->
+            <div class="visualization-grid">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Primary Visualization</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn" id="resetZoomPrimary">Reset Zoom</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="primaryChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Convergence Analysis</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn" id="resetZoomConvergence">Reset Zoom</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="convergenceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h3>Detailed Results</h3>
+                <div id="detailedResults" class="results-content"></div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Status Messages -->
+    <div id="statusMessage" class="status-message"></div>
+    
+    <!-- Scripts -->
+    <script src="/js/utils.js"></script>
+    <script src="/js/api-client.js"></script>
+    <script src="/js/charts.js"></script>
+    <script src="/js/simulations.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html> class="control-group">
+                    <label for="numSimulations">Number of Simulations</label>
+                    <input type="number" id="numSimulations" value="100000" min="1000" max="10000000">
+                </div>
+                <div class="control-group">
+                    <label for="batchSize">Batch Size</label>
+                    <input type="number" id="batchSize" value="5000" min="100" max="50000">
+                </div>
+                <div class="control-group">
+                    <label for="updateFrequency">Update Frequency</label>
+                    <input type="number" id="updateFrequency" value="5000" min="1000" max="50000">
+                </div>
+                <div
